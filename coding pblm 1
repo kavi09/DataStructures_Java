@@ -1,0 +1,64 @@
+/*Given a string (Eg. “IndiaIndia”), 
+output an array containing the distance of all the elements from the nearest occurence of a given character. (Eg. ‘a’). 
+Output Array would be: {4 3, 2, 1, 0, 1, 2, 2,1, 0}
+*/
+
+// "static void main" must be defined in a public class.
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Hello World!");
+        
+        String word ="Hello World!";
+        HashMap<Character,Integer> map = new HashMap<>();
+        int i=0,j=0;
+        List<Integer> output= new ArrayList<>();
+        if(word.length()==1)
+            System.out.println(output);
+        int index=0;
+        char val ='H';
+        while(j!=word.length())
+        {
+            if(word.charAt(j)==val)
+            {
+                if(j==0)
+                {
+                    map.put(val,j);
+                    output.add(j-i);
+                    j++;
+                    i++;
+                }else
+                {
+                    if(map.containsKey(val))
+                    {
+                        while(i!=j)
+                        {
+                        int k = map.get(val);
+                        output.add(Math.min(Math.abs(k-i),Math.abs(j-i)));
+                        i++;
+                        }
+                    }else
+                    {
+                        while(i!=j)
+                        {
+                        output.add(j-i);
+                            i++;
+                        }    
+                    }
+                      map.put(val,j);
+                     
+                }
+            }
+            
+            j++;
+        }      
+        while(i!=j)
+        { if(map.containsKey(val))
+        {
+           output.add(Math.abs(map.get(val)-i));
+            i++;
+        }else
+            break;
+        }
+     System.out.println(output); 
+    }
+}
